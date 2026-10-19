@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sky Phone Shop · Loan Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;600;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f4f7fd;--card:#fff;--ink:#0f172a;--mute:#64748b;--line:#e2e8f0;--pri:#2563eb;--pri2:#06b6d4;--chip:#eef3fc;--ok:#059669;--sh:0 8px 28px rgba(37,99,235,.10)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1020;--card:#141a30;--ink:#eaf0ff;--mute:#93a0c4;--line:#252d4d;--chip:#1c2442;--sh:0 8px 28px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg:#0b1020;--card:#141a30;--ink:#eaf0ff;--mute:#93a0c4;--line:#252d4d;--chip:#1c2442;--sh:0 8px 28px rgba(0,0,0,.4)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 'Noto Sans Khmer','Inter',system-ui,sans-serif;transition:background .3s}
+.wrap{max-width:560px;margin:0 auto;padding:14px 14px 40px}
+svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;flex:none}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:8px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--pri),var(--pri2));display:grid;place-items:center;color:#fff}
+.brand b{display:block;font:800 16px Inter,sans-serif;letter-spacing:.5px;line-height:1.1}.brand small{color:var(--mute);font-size:11px}
+.ctl{display:flex;gap:8px;align-items:center}
+.lang{display:flex;background:var(--chip);border-radius:99px;padding:3px}
+.lang button,.theme{border:0;background:none;color:var(--mute);padding:5px 11px;border-radius:99px;font:inherit;font-weight:600;cursor:pointer}
+.lang button.on{background:var(--pri);color:#fff}
+.theme{background:var(--chip);width:38px;height:38px;padding:0;display:grid;place-items:center;color:var(--ink)}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px}
+.tabs button{display:flex;flex-direction:column;align-items:center;gap:2px;border:1px solid var(--line);background:var(--card);color:var(--mute);padding:9px 2px;border-radius:14px;font:600 12px inherit;font-family:inherit;cursor:pointer}
+.tabs button.on{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;border-color:transparent;box-shadow:var(--sh)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:14px;box-shadow:var(--sh)}
+h3{margin:0 0 10px;font-size:13px;color:var(--mute);font-weight:600;display:flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.4px}
+h3 svg{color:var(--pri);width:18px;height:18px}
+select,input[type=number]{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;font-size:16px;outline:none}
+select:focus,input:focus{border-color:var(--pri)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{flex:1;min-width:64px;display:flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:10px;border-radius:12px;font:inherit;font-weight:600;cursor:pointer}
+.chips button.on{background:var(--pri);border-color:var(--pri);color:#fff}
+.brands button{padding:14px;font-size:16px}
+input[type=range]{width:100%;accent-color:var(--pri);margin:12px 0 4px}
+.row{display:flex;justify-content:space-between;color:var(--mute);font-size:13px;gap:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.inp{position:relative}.inp span{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--mute);font-weight:600}
+.warn{color:#dc2626;font-size:12px;min-height:18px;margin-top:4px}
+.hero{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;border-radius:20px;padding:20px;margin-bottom:14px;text-align:center;box-shadow:var(--sh)}
+.hero small{opacity:.9}.hero .big{font:800 40px Inter,sans-serif}
+.hero .sub{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.hero .sub div{background:rgba(255,255,255,.18);border-radius:14px;padding:10px}.hero .sub b{display:block;font:800 17px Inter,sans-serif}
+table{width:100%;border-collapse:collapse;font:13px Inter,sans-serif}th,td{padding:8px 4px;text-align:right;border-bottom:1px solid var(--line)}th:first-child,td:first-child{text-align:left}th{color:var(--mute);font-weight:600}
+.scroll{overflow-x:auto}.pane{display:none}.pane.on{display:block}
+.disp{background:var(--bg);border-radius:16px;padding:14px;text-align:right;margin-bottom:12px;min-height:84px}
+.disp .ex{color:var(--mute);font-size:14px;min-height:20px;word-break:break-all}.disp .res{font:800 34px Inter,sans-serif;word-break:break-all}
+.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.keys button{padding:16px 0;border:0;border-radius:14px;background:var(--chip);color:var(--ink);font:600 20px Inter,sans-serif;cursor:pointer;transition:transform .05s}
+.keys button:active{transform:scale(.94)}.keys .op{background:var(--pri);color:#fff}.keys .fn{color:var(--pri)}.keys .eq{background:var(--ok);color:#fff}
+.conv{display:flex;align-items:center;gap:8px;margin-bottom:10px}.conv label{min-width:34px;font:800 22px Inter,sans-serif;text-align:center;color:var(--pri)}
+.out{font:800 26px Inter,sans-serif;text-align:center;padding:12px 0;color:var(--pri);word-break:break-all}
+.res2{background:var(--chip);border-radius:12px;padding:10px;margin-top:10px;font:700 17px Inter,sans-serif;text-align:center}
+.note{color:var(--mute);font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div class="brand"><div class="logo" data-ic="cloud"></div><div><b>SKY PHONE SHOP</b><small data-km="ម៉ាស៊ីនគិតឥណទាន" data-en="Installment calculator"></small></div></div>
+    <div class="ctl">
+      <button class="theme" id="th" onclick="toggleTheme()" aria-label="theme"></button>
+      <div class="lang"><button id="bk" class="on" onclick="setLang('km')">ខ្មែរ</button><button id="be" onclick="setLang('en')">EN</button></div>
+    </div>
+  </div>
+  <div class="tabs">
+    <button class="on" data-t="loan" onclick="tab('loan')"><span data-ic="wallet"></span><span data-km="ឥណទាន" data-en="Loan"></span></button>
+    <button data-t="calc" onclick="tab('calc')"><span data-ic="calc"></span><span data-km="គិតលេខ" data-en="Calc"></span></button>
+    <button data-t="pct" onclick="tab('pct')"><span data-ic="pct"></span><span data-km="ភាគរយ" data-en="Percent"></span></button>
+    <button data-t="fx" onclick="tab('fx')"><span data-ic="fx"></span><span data-km="$ ↔ ៛" data-en="$ ↔ ៛"></span></button>
+  </div>
+
+  <div id="loan" class="pane on">
+    <div class="card"><h3><span data-ic="phone"></span><span data-km="ម៉ាកទូរស័ព្ទ" data-en="Brand"></span></h3><div class="chips brands" id="brand"></div></div>
+    <div class="card"><h3><span data-ic="list"></span><span data-km="ជ្រើសរើសម៉ូដែល" data-en="Select model"></span></h3><select id="model"></select></div>
+    <div class="card"><h3><span data-ic="sparkle"></span><span data-km="ស្ថានភាព" data-en="Condition"></span></h3><div class="chips" id="cond"></div></div>
+    <div class="card"><h3><span data-ic="chip"></span><span data-km="ទំហំ Storage" data-en="Storage"></span></h3><div class="chips" id="stor"></div></div>
+    <div class="card"><h3><span data-ic="cal"></span><span data-km="រយៈពេល (ខែ)" data-en="Term (months)"></span></h3><div class="chips" id="term"></div></div>
+    <div class="card"><h3><span data-ic="dollar"></span><span data-km="ចំនួនទឹកប្រាក់ខ្ចី" data-en="Loan amount"></span></h3>
+      <div class="row"><span data-km="តម្លៃលក់រាយ" data-en="Retail price"></span><b id="retail">—</b></div>
+      <input type="range" id="rng"><div class="row"><span id="mn"></span><span id="mx"></span></div>
+      <div class="two">
+        <div class="inp"><input type="number" id="amt" inputmode="decimal" step="any"><span>$</span></div>
+        <div class="inp"><input type="number" id="apct" inputmode="decimal" step="any"><span>%</span></div>
+      </div>
+      <div class="warn" id="warn"></div>
+    </div>
+    <div class="hero"><small data-km="បង់ក្នុងមួយខែ" data-en="Monthly payment"></small>
+      <div class="big" id="pay">$0.00</div><small id="payk">≈ 0 ៛</small>
+      <div class="sub"><div><small data-km="ប្រាក់ដើម/ខែ" data-en="Principal/mo"></small><b id="pr">$0</b></div><div><small data-km="ការប្រាក់ខែដំបូង" data-en="1st month interest"></small><b id="it">$0</b></div></div>
+    </div>
+    <div class="card scroll"><h3><span data-ic="list"></span><span data-km="តារាងបង់ប្រាក់" data-en="Schedule"></span></h3>
+      <table><thead><tr><th>#</th><th data-km="ដើម" data-en="Principal"></th><th data-km="ការប្រាក់" data-en="Interest"></th><th data-km="សរុប" data-en="Total"></th></tr></thead><tbody id="tb"></tbody></table>
+    </div>
+  </div>
+
+  <div id="calc" class="pane">
+    <div class="card"><div class="disp"><div class="ex" id="ex"></div><div class="res" id="rs">0</div></div><div class="keys" id="keys"></div>
+    <div class="note" style="margin-top:10px" data-km="អាចវាយតាម keyboard បាន" data-en="Keyboard input supported"></div></div>
+  </div>
+
+  <div id="pct" class="pane">
+    <div class="card"><h3><span data-ic="pct"></span><span data-km="X% នៃ Y" data-en="X% of Y"></span></h3>
+      <div class="two"><input type="number" id="p1x" placeholder="X %" inputmode="decimal"><input type="number" id="p1y" placeholder="Y" inputmode="decimal"></div><div class="res2" id="p1r">—</div></div>
+    <div class="card"><h3><span data-ic="pct"></span><span data-km="X ស្មើប៉ុន្មាន % នៃ Y" data-en="X is what % of Y"></span></h3>
+      <div class="two"><input type="number" id="p2x" placeholder="X" inputmode="decimal"><input type="number" id="p2y" placeholder="Y" inputmode="decimal"></div><div class="res2" id="p2r">—</div></div>
+    <div class="card"><h3><span data-ic="pct"></span><span data-km="បន្ថែម / ចុះថ្លៃ %" data-en="Increase / discount %"></span></h3>
+      <div class="two"><input type="number" id="p3y" placeholder="Price" inputmode="decimal"><input type="number" id="p3x" placeholder="%" inputmode="decimal"></div><div class="res2" id="p3r">—</div></div>
+  </div>
+
+  <div id="fx" class="pane">
+    <div class="card"><h3><span data-ic="fx"></span><span data-km="អត្រាប្តូរប្រាក់ (1$ = ? ៛)" data-en="Exchange rate (1$ = ? ៛)"></span></h3>
+      <input type="number" id="rate" value="4100" inputmode="decimal">
+      <div class="conv" style="margin-top:14px"><label>$</label><input type="number" id="usd" placeholder="USD" inputmode="decimal"></div>
+      <div class="conv"><label>៛</label><input type="number" id="khr" placeholder="KHR" inputmode="decimal"></div>
+      <div class="chips"><button onclick="setUsd(10)">$10</button><button onclick="setUsd(50)">$50</button><button onclick="setUsd(100)">$100</button><button onclick="setUsd(500)">$500</button></div>
+      <div class="out" id="fxo">—</div></div>
+  </div>
+</div>
+
+<script>
+// ===== CONFIG: edit real prices & rates here =====
+const MONTHLY_RATE=0.015;
+const BRANDS={
+ iPhone:{icon:'apple',models:[{n:"iPhone 11",p:{64:200,128:240}},{n:"iPhone 12",p:{64:260,128:300}},{n:"iPhone 13",p:{128:380,256:450}},{n:"iPhone 14",p:{128:480,256:560}},{n:"iPhone 14 Pro Max",p:{128:700,256:780,512:900}},{n:"iPhone 15",p:{128:600,256:680}},{n:"iPhone 15 Pro Max",p:{256:900,512:1050}},{n:"iPhone 16 Pro Max",p:{256:1100,512:1250}}]},
+ OPPO:{icon:'phone',models:[{n:"OPPO A58",p:{128:150}},{n:"OPPO A78",p:{128:200,256:240}},{n:"OPPO Reno 11",p:{256:330}},{n:"OPPO Reno 12",p:{256:380}},{n:"OPPO Find X7",p:{256:600,512:700}}]}};
+const CONDS=[["ថ្មី","New",1],["99%","99%",.92],["95%","95%",.85],["90%","90%",.78]];
+const TERMS=[3,6,9,12];
+// =================================================
+const P={cloud:'<path d="M17.5 19a4.5 4.5 0 0 0 .4-9A6 6 0 0 0 6.3 8.6 4 4 0 0 0 7 19z"/>',wallet:'<path d="M3 7a2 2 0 0 1 2-2h13v4"/><path d="M3 7v11a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-3"/><path d="M21 9H16a2 2 0 0 0 0 4h5z"/>',calc:'<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 18h.01M12 18h.01M16 18h.01"/>',pct:'<path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/>',fx:'<path d="M7 7h13l-3-3M17 17H4l3 3"/>',phone:'<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>',apple:'<path d="M12 7c-1-2-3-3-5-2-3 1.500-3 6-1 9 1 1.500 2 3 3.500 3 1 0 1.500-.5 2.500-.5s1.500.5 2.500.5c1.500 0 2.500-1.500 3.500-3-2-1-3-4-1-6-1-1-2.500-1.500-3.500-1z"/><path d="M12 7c0-2 1-3 3-3"/>',list:'<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',sparkle:'<path d="M12 3l1.800 5.200L19 10l-5.200 1.800L12 17l-1.800-5.200L5 10l5.200-1.800z"/>',chip:'<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/>',cal:'<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',dollar:'<path d="M12 2v20M17 6H9.500a3.500 3.500 0 0 0 0 7h5a3.500 3.500 0 0 1 0 7H6"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.900 4.900l1.400 1.400M17.700 17.700l1.400 1.400M2 12h2M20 12h2M4.900 19.100l1.400-1.400M17.700 6.300l1.400-1.400"/>',moon:'<path d="M21 12.800A9 9 0 1 1 11.200 3a7 7 0 0 0 9.800 9.800z"/>'};
+const ic=n=>`<svg class="i" viewBox="0 0 24 24">${P[n]}</svg>`;
+const $=id=>document.getElementById(id),f=(n,d=2)=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const fxr=()=>+$('rate').value||4100;
+function icons(root=document){root.querySelectorAll('[data-ic]').forEach(e=>e.innerHTML=ic(e.dataset.ic))}
+let lang='km',st={b:'iPhone',m:0,c:0,s:null,t:6,a:0};
+function setTheme(t){document.documentElement.dataset.theme=t;$('th').innerHTML=ic(t=='dark'?'sun':'moon');try{localStorage.setItem('sky-theme',t)}catch(e){}}
+function toggleTheme(){setTheme(document.documentElement.dataset.theme=='dark'?'light':'dark')}
+function setLang(l){lang=l;document.documentElement.lang=l;$('bk').className=l=='km'?'on':'';$('be').className=l=='en'?'on':'';
+ document.querySelectorAll('[data-km]').forEach(e=>e.textContent=e.dataset[l]);buildChips();calc()}
+function tab(t){document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id==t));document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t==t))}
+function chips(id,items,cur,fn){$(id).innerHTML=items.map(x=>`<button class="${x.v==cur?'on':''}" onclick="${fn}('${x.v}')">${x.i?ic(x.i):''}${x.l}</button>`).join('')}
+const models=()=>BRANDS[st.b].models;
+function buildModels(){$('model').innerHTML=models().map((m,i)=>`<option value="${i}">${m.n}</option>`).join('');$('model').value=st.m}
+function buildChips(){
+ chips('brand',Object.keys(BRANDS).map(b=>({v:b,l:b,i:BRANDS[b].icon})),st.b,'pb');
+ chips('cond',CONDS.map((c,i)=>({v:i,l:lang=='km'?c[0]:c[1]})),st.c,'pc');
+ const sizes=Object.keys(models()[st.m].p);if(!st.s||!sizes.includes(String(st.s)))st.s=sizes[0];
+ chips('stor',sizes.map(s=>({v:s,l:s+'GB'})),st.s,'ps');chips('term',TERMS.map(t=>({v:t,l:t})),st.t,'pt')}
+const pb=v=>{st.b=v;st.m=0;st.s=null;st.a=0;buildModels();buildChips();calc(true)};
+const pc=v=>{st.c=+v;st.a=0;buildChips();calc(true)},ps=v=>{st.s=v;st.a=0;buildChips();calc(true)},pt=v=>{st.t=+v;buildChips();calc()};
+$('model').onchange=e=>{st.m=+e.target.value;st.s=null;st.a=0;buildChips();calc(true)};
+const retail=()=>Math.round(models()[st.m].p[st.s]*CONDS[st.c][2]);
+function calc(reset,keepInputs){
+ const r=retail(),mn=Math.round(r*.3),mx=Math.round(r*.8);
+ if(reset||!st.a)st.a=Math.round(r*.6);
+ $('retail').textContent=f(r,0);$('rng').min=mn;$('rng').max=mx;$('rng').value=st.a;
+ $('mn').textContent=(lang=='km'?'ទាបបំផុត ':'Min ')+f(mn,0);$('mx').textContent=(lang=='km'?'ខ្ពស់បំផុត ':'Max ')+f(mx,0);
+ if(!keepInputs){$('amt').value=+st.a.toFixed(2);$('apct').value=+(st.a/r*100).toFixed(1)}
+ $('warn').textContent=(st.a<mn||st.a>mx)?(lang=='km'?`ត្រូវនៅចន្លោះ ${f(mn,0)} – ${f(mx,0)}`:`Must be between ${f(mn,0)} – ${f(mx,0)}`):'';
+ const n=st.t,pr=st.a/n;let bal=st.a,rows='',first=0;
+ for(let k=1;k<=n;k++){const i=bal*MONTHLY_RATE;if(k==1)first=pr+i;rows+=`<tr><td>${k}</td><td>${f(pr)}</td><td>${f(i)}</td><td><b>${f(pr+i)}</b></td></tr>`;bal-=pr}
+ $('tb').innerHTML=rows;$('pay').textContent=f(first);$('payk').textContent='≈ '+Math.round(first*fxr()).toLocaleString()+' ៛';
+ $('pr').textContent=f(pr);$('it').textContent=f(st.a*MONTHLY_RATE)}
+// typing is free; clamping happens on blur / Enter
+$('rng').oninput=e=>{st.a=+e.target.value;calc()};
+$('amt').oninput=e=>{st.a=+e.target.value||0;$('apct').value=+(st.a/retail()*100).toFixed(1);calc(false,true)};
+$('apct').oninput=e=>{st.a=(+e.target.value||0)/100*retail();$('amt').value=+st.a.toFixed(2);calc(false,true)};
+function clamp(){const r=retail();st.a=Math.min(Math.round(r*.8),Math.max(Math.round(r*.3),st.a));calc()}
+['amt','apct'].forEach(i=>{$(i).onblur=clamp;$(i).onkeydown=e=>{if(e.key=='Enter'){clamp();e.target.blur()}}});
+
+// calculator (buttons + physical keyboard)
+const K=['AC','⌫','%','÷','7','8','9','×','4','5','6','−','1','2','3','+','0','.','=','$→៛'];
+$('keys').innerHTML=K.map(k=>`<button class="${'÷×−+'.includes(k)?'op':k=='='?'eq':['AC','⌫','%','$→៛'].includes(k)?'fn':''}" onclick="key('${k}')">${k}</button>`).join('');
+let ex='';
+function ev(s){const t=s.replace(/×/g,'*').replace(/÷/g,'/').replace(/−/g,'-').replace(/(\d+\.?\d*)%/g,'($1/100)');
+ if(!/^[\d+\-*/().\s]+$/.test(t))return NaN;try{return Function('"use strict";return('+t+')')()}catch(e){return NaN}}
+function key(k){
+ if(k=='AC')ex='';else if(k=='⌫')ex=ex.slice(0,-1);
+ else if(k=='='){const v=ev(ex);if(isFinite(v))ex=String(+v.toFixed(8))}
+ else if(k=='$→៛'){const v=ev(ex);if(isFinite(v))ex=String(Math.round(v*fxr()))}
+ else ex+=k;
+ $('ex').textContent=ex;const v=ev(ex);$('rs').textContent=isFinite(v)?(+v.toFixed(8)).toLocaleString('en-US',{maximumFractionDigits:8}):(ex?'…':'0')}
+document.addEventListener('keydown',e=>{
+ if(!$('calc').classList.contains('on')||/INPUT|SELECT/.test(e.target.tagName)||e.ctrlKey||e.metaKey)return;
+ const m={'*':'×','/':'÷','-':'−','Enter':'=','Backspace':'⌫','Escape':'AC','Delete':'AC'};
+ let k=m[e.key]||e.key;
+ if(/^[0-9.+%]$/.test(k)||['×','÷','−','=','⌫','AC'].includes(k)){e.preventDefault();key(k)}});
+
+// percent tools
+const nf=(n,d=2)=>isFinite(n)?(+n.toFixed(d)).toLocaleString('en-US',{maximumFractionDigits:d}):'—';
+function pcts(){
+ const a=+$('p1x').value,b=+$('p1y').value;$('p1r').textContent=$('p1x').value&&$('p1y').value?nf(a/100*b):'—';
+ const c=+$('p2x').value,d=+$('p2y').value;$('p2r').textContent=$('p2x').value&&d?nf(c/d*100)+' %':'—';
+ const y=+$('p3y').value,x=+$('p3x').value;$('p3r').innerHTML=$('p3y').value&&$('p3x').value?`+${nf(x)}% → ${nf(y*(1+x/100))}<br>−${nf(x)}% → ${nf(y*(1-x/100))}`:'—'}
+['p1x','p1y','p2x','p2y','p3x','p3y'].forEach(i=>$(i).oninput=pcts);
+
+// fx
+function upd(){$('fxo').textContent=$('usd').value?`$${(+$('usd').value).toLocaleString()} = ${Math.round($('usd').value*fxr()).toLocaleString()} ៛`:'—'}
+$('usd').oninput=()=>{$('khr').value=$('usd').value?Math.round($('usd').value*fxr()):'';upd()};
+$('khr').oninput=()=>{$('usd').value=$('khr').value?+($('khr').value/fxr()).toFixed(2):'';upd()};
+$('rate').oninput=()=>{$('usd').oninput();calc(false,true)};
+function setUsd(v){$('usd').value=v;$('usd').oninput()}
+
+icons();
+let t0;try{t0=localStorage.getItem('sky-theme')}catch(e){}
+setTheme(t0||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+buildModels();setLang('km');calc(true);
+</script>
+</body>
+</html>
