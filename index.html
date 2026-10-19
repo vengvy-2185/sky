@@ -14,13 +14,13 @@
 html{scroll-padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}
 html,body{touch-action:manipulation;-webkit-text-size-adjust:100%}
 button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 'Khmer OS Battambang','Noto Sans Khmer',Inter,system-ui,sans-serif;transition:background .3s}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 'Riel','Khmer OS Battambang','Noto Sans Khmer',Inter,system-ui,sans-serif;transition:background .3s}
 .wrap{max-width:560px;margin:0 auto;padding:14px 14px 40px}
 svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle;flex:none}
 .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:8px}
 .brand{display:flex;align-items:center;gap:10px}
 .logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--pri),var(--pri2));display:grid;place-items:center;color:#fff}
-.brand b{display:block;font:800 16px 'Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif;letter-spacing:.5px;line-height:1.1}.brand small{color:var(--mute);font-size:11px}
+.brand b{display:block;font:800 16px 'Riel','Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif;letter-spacing:.5px;line-height:1.1}.brand small{color:var(--mute);font-size:11px}
 .ctl{display:flex;gap:8px;align-items:center}
 .lang{display:flex;background:var(--chip);border-radius:99px;padding:3px}
 .lang button,.theme{border:0;background:none;color:var(--mute);padding:5px 11px;border-radius:99px;font:inherit;font-weight:600;cursor:pointer}
@@ -44,23 +44,23 @@ input[type=range]{width:100%;accent-color:var(--pri);margin:12px 0 4px}
 .inp{position:relative}.inp span{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--mute);font-weight:600}
 .warn{color:#dc2626;font-size:12px;min-height:18px;margin-top:4px}
 .hero{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;border-radius:20px;padding:20px;margin-bottom:14px;text-align:center;box-shadow:var(--sh)}
-.hero small{opacity:.9}.hero .big{font:800 40px 'Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif}
+.hero small{opacity:.9}.hero .big{font:800 40px 'Riel','Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif}
 .hero .sub{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-.hero .sub div{background:rgba(255,255,255,.18);border-radius:14px;padding:10px}.hero .sub b{display:block;font:800 17px 'Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif}
-table{width:100%;border-collapse:collapse;font:13px 'Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif}th,td{padding:8px 4px;text-align:right;border-bottom:1px solid var(--line)}th:first-child,td:first-child{text-align:left}th{color:var(--mute);font-weight:600}
+.hero .sub div{background:rgba(255,255,255,.18);border-radius:14px;padding:10px}.hero .sub b{display:block;font:800 17px 'Riel','Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif}
+table{width:100%;border-collapse:collapse;font:13px 'Riel','Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif}th,td{padding:8px 4px;text-align:right;border-bottom:1px solid var(--line)}th:first-child,td:first-child{text-align:left}th{color:var(--mute);font-weight:600}
 .scroll{overflow-x:auto}.pane{display:none}.pane.on{display:block}
 .disp{background:var(--bg);border-radius:16px;padding:14px;text-align:right;margin-bottom:12px;min-height:84px}
-.disp .ex{color:var(--mute);font-size:14px;min-height:20px;word-break:break-all}.disp .res{font:800 34px 'Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif;word-break:break-all}
+.disp .ex{color:var(--mute);font-size:14px;min-height:20px;word-break:break-all}.disp .res{font:800 34px 'Riel','Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif;word-break:break-all}
 .keys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.keys button{padding:16px 0;border:0;border-radius:14px;background:var(--chip);color:var(--ink);font:600 20px 'Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif;cursor:pointer;transition:transform .05s}
+.keys button{padding:16px 0;border:0;border-radius:14px;background:var(--chip);color:var(--ink);font:600 20px 'Riel','Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif;cursor:pointer;transition:transform .05s}
 .keys button:active{transform:scale(.94)}.keys .op{background:var(--pri);color:#fff}.keys .fn{color:var(--pri)}.keys .eq{background:var(--ok);color:#fff}
-.conv{display:flex;align-items:center;gap:8px;margin-bottom:10px}.conv label{min-width:34px;font:800 22px 'Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif;text-align:center;color:var(--pri)}
-.out{font:800 26px 'Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif;text-align:center;padding:12px 0;color:var(--pri);word-break:break-all}
-.res2{background:var(--chip);border-radius:12px;padding:10px;margin-top:10px;font:700 17px 'Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif;text-align:center}
+.conv{display:flex;align-items:center;gap:8px;margin-bottom:10px}.conv label{min-width:34px;font:800 22px 'Riel','Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif;text-align:center;color:var(--pri)}
+.out{font:800 26px 'Riel','Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif;text-align:center;padding:12px 0;color:var(--pri);word-break:break-all}
+.res2{background:var(--chip);border-radius:12px;padding:10px;margin-top:10px;font:700 17px 'Riel','Khmer OS Battambang','Noto Sans Khmer',Inter,sans-serif;text-align:center}
 .note{color:var(--mute);font-size:12px;text-align:center}
 
 .cols>div{min-width:0}
-#calc .card,#fx .card,#admin .card{max-width:480px;margin-left:auto;margin-right:auto}
+#calc .card{max-width:480px;margin-left:auto;margin-right:auto}
 @media (min-width:900px){
  .wrap{max-width:1040px;padding:24px 28px 60px}
  .tabs{max-width:520px;margin-left:auto;margin-right:auto}
@@ -103,7 +103,7 @@ tbody tr:nth-child(even){background:var(--chip)}
  .cols>div:last-child{position:sticky;top:calc(var(--hh) + env(safe-area-inset-top,0px) + 16px)}
  #fx.on{display:grid;grid-template-columns:1fr 1fr;gap:0 20px;align-items:start}
  #fx .card:first-child{grid-column:1/-1}
- #fx .card,#admin .card{max-width:none}
+ #fx .card,#admin .card{max-width:none;margin-left:0;margin-right:0}
  #adbody{columns:2;column-gap:20px}
  #calc .card{max-width:600px}
 }
@@ -118,6 +118,14 @@ tbody tr:nth-child(even){background:var(--chip)}
  table{font-size:14px}th,td{padding:10px 8px}
 }
 @media (min-width:1500px){.cols{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}}
+
+/* ===== v4 fixes ===== */
+@font-face{font-family:'Riel';src:local('Khmer UI'),local('Leelawadee UI'),local('Noto Sans Khmer'),local('Khmer Sangam MN');unicode-range:U+17DB;font-weight:100 900}
+.out{background:var(--chip);border-radius:16px;padding:18px 12px;margin:14px 0;min-height:72px;display:grid;place-items:center;text-align:center}
+.tabs button:focus{outline:none}
+.conv input{flex:1}
+#fx .card .chips button{min-width:0;padding:10px 4px}
+@media (min-width:820px){.out{font-size:34px;min-height:96px}#fx .card{padding:22px}}
 </style>
 </head>
 <body>
